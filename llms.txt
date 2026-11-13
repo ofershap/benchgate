@@ -1,0 +1,19 @@
+# benchgate
+
+> CI gate for Go benchmark regressions. Compares two `go test -bench` output
+> files with real statistics (x/perf benchstat-style) and exits 1 when a
+> benchmark got significantly slower. The exit code benchstat never got
+> (golang/go#20728).
+
+## Usage
+
+- benchgate OLD NEW compares two `go test -bench=. -count=N` output files (- reads stdin).
+- --threshold sets the failing new/old median ratio (default 1.05); --alpha the p-value cutoff (default 0.05).
+- --unit picks the measurement unit: ns/op (default), B/op, allocs/op.
+- --annotate prints GitHub Actions ::error annotations; --no-fail reports without failing.
+- Benchmarks present on only one side are listed, never flagged.
+- Exit codes: 0 clean, 1 regression flagged.
+
+## Docs
+
+- [README](https://github.com/ofershap/benchgate#readme): install, usage, statistics, Q&A
