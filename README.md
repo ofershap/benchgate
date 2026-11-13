@@ -18,7 +18,7 @@ $ echo $?
 1
 ```
 
-A regression only counts when **both** conditions hold: the median ratio crosses `--threshold` (default 1.05x) **and** the shift is statistically significant (`--alpha`, default 0.05, via a Mann-Whitney style test from `golang.org/x/perf/benchmath`). Noisy CI runners won't burn you with false alarms; a real 30% slowdown can't hide in the noise.
+A regression only counts when **both** conditions hold: the median ratio crosses `--threshold` (default 1.05x) **and** the shift is statistically significant (`--alpha`, default 0.05, via a Mann-Whitney style test from `golang.org/x/perf/benchmath`). Requiring both magnitude and significance filters out most runner noise while still catching a real 30% slowdown.
 
 Wire it into CI in three lines:
 
